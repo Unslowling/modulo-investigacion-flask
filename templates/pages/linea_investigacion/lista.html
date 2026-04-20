@@ -1,0 +1,62 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Líneas de Investigación{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <div class="card mb-4 shadow-sm border-0" style="border-radius: 12px;">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3" style="border-top-left-radius: 12px; border-top-right-radius: 12px;">
+            <div>
+                <h4 class="mb-0 text-dark">Líneas de Investigación</h4>
+                <small class="text-muted">Administración de registros del módulo investigación</small>
+            </div>
+            <a href="{{ url_for('linea_investigacion.crear') }}" class="btn btn-success" style="border-radius: 8px;">
+                + Nueva Línea
+            </a>
+        </div>
+        
+        <div class="card-body p-4">
+            {% if registros %}
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th class="text-end">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for reg in registros %}
+                            <tr>
+                                <td>{{ reg.id }}</td>
+                                <td class="fw-semibold">{{ reg.nombre }}</td>
+                                <td>{{ reg.descripcion }}</td>
+                                <td class="text-end">
+                                    <a href="{{ url_for('linea_investigacion.editar', id=reg.id) }}" 
+                                       class="btn btn-primary btn-sm me-2" style="border-radius: 6px;">
+                                       Editar
+                                    </a>
+
+                                    <form method="POST" action="{{ url_for('linea_investigacion.eliminar') }}"
+                                          style="display:inline"
+                                          onsubmit="return confirm('¿Desea eliminar esta línea de investigación?');">
+                                        <input type="hidden" name="id" value="{{ reg.id }}" />
+                                        <button class="btn btn-danger btn-sm" type="submit" style="border-radius: 6px;">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-warning mb-0" style="border-radius: 8px;">No se encontraron registros de líneas de investigación.</div>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

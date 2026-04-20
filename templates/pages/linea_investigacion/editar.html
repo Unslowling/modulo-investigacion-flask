@@ -1,0 +1,49 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Editar Línea de Investigación{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    
+    <div class="card shadow-sm mx-auto" style="max-width: 700px; border-radius: 12px; border: none;">
+        <div class="card-header bg-white py-3" style="border-top-left-radius: 12px; border-top-right-radius: 12px;">
+            <h4 class="mb-0 text-dark">Editar Línea de Investigación</h4>
+        </div>
+        
+        <div class="card-body p-4 p-md-5">
+            <form method="POST" action="{{ url_for('linea_investigacion.editar', id=registro.id) }}"
+                  onsubmit="return confirm('¿Está seguro de actualizar la Línea de Investigación?');">
+                
+                <div class="mb-4">
+                    <label for="id_display" class="form-label fw-bold">ID</label>
+                    <input type="text" class="form-control" style="border-radius: 8px; padding: 10px; background-color: #f8f9fa;"
+                           id="id_display" value="{{ registro.id }}" readonly>
+                </div>
+
+                <div class="mb-4">
+                    <label for="nombre" class="form-label fw-bold">Nombre</label>
+                    <input type="text" class="form-control" style="border-radius: 8px; padding: 10px;"
+                           id="nombre" name="nombre" value="{{ registro.nombre }}" required maxlength="45">
+                </div>
+                
+                <div class="mb-5">
+                    <label for="descripcion" class="form-label fw-bold">Descripción</label>
+                    <textarea class="form-control" style="border-radius: 8px; padding: 10px;"
+                              id="descripcion" name="descripcion" rows="4" required maxlength="256">{{ registro.descripcion }}</textarea>
+                </div>
+                
+                <div class="d-flex justify-content-end mt-2">
+                    <a href="{{ url_for('linea_investigacion.index') }}" class="btn btn-secondary me-3" style="border-radius: 8px; padding: 8px 24px;">
+                        Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-success" style="border-radius: 8px; padding: 8px 24px;">
+                        Actualizar
+                    </button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
