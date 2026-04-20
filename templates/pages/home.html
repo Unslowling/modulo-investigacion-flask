@@ -1,0 +1,82 @@
+{#
+    home.html - Pagina de inicio.
+
+    Muestra informacion general del proyecto y las tablas disponibles.
+    Muestra de forma discreta a que base de datos esta conectada la API.
+#}
+
+{% extends 'layout/base.html' %}
+
+{% block title %}CRUD Investigacion{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h1>CRUD - Investigacion</h1>
+
+    <p class="lead">
+        Aplicación web en Flask que consume una API genérica en C# 
+        para gestionar las tablas del sistema de Mapa de Conocimiento, 
+        incluyendo áreas, líneas de investigación y sus relaciones.
+    </p>
+
+    <div class="alert alert-info">
+        <b>Tablas disponibles:</b> 
+        Área de Conocimiento, Área de Aplicación, Línea de Investigación, ODS,
+        Relaciones: AC-Línea, AA-Línea, ODS-Línea,
+        Semillero, Semillero-Línea, Grupo de Investigación.
+        <br>
+        Use el menú lateral para navegar y gestionar cada entidad del sistema.
+    </div>
+
+    {# ───────── INFO DE CONEXION A LA BD (discreta) ───────── #}
+    {% if diagnostico and diagnostico.servidor %}
+        <div class="card mt-4 border-secondary">
+            <div class="card-header bg-secondary bg-opacity-10 text-muted py-2">
+                <small><strong>Conexion activa</strong></small>
+            </div>
+            <div class="card-body py-2">
+                <table class="table table-sm table-borderless mb-0" style="font-size: 0.85rem;">
+                    <tbody>
+                        {% if diagnostico.servidor.proveedor %}
+                        <tr>
+                            <td class="text-muted" style="width:160px">Proveedor</td>
+                            <td><strong>{{ diagnostico.servidor.proveedor }}</strong></td>
+                        </tr>
+                        {% endif %}
+                        {% if diagnostico.servidor.baseDatos %}
+                        <tr>
+                            <td class="text-muted">Base de datos</td>
+                            <td><strong>{{ diagnostico.servidor.baseDatos }}</strong></td>
+                        </tr>
+                        {% endif %}
+                        {% if diagnostico.servidor.version %}
+                        <tr>
+                            <td class="text-muted">Version</td>
+                            <td><small>{{ diagnostico.servidor.version[:80] }}{% if diagnostico.servidor.version|length > 80 %}...{% endif %}</small></td>
+                        </tr>
+                        {% endif %}
+                        {% if diagnostico.servidor.direccionIP %}
+                        <tr>
+                            <td class="text-muted">Servidor</td>
+                            <td>{{ diagnostico.servidor.direccionIP }}{% if diagnostico.servidor.puerto %}:{{ diagnostico.servidor.puerto }}{% endif %}</td>
+                        </tr>
+                        {% endif %}
+                        {% if diagnostico.servidor.usuarioConectado %}
+                        <tr>
+                            <td class="text-muted">Usuario</td>
+                            <td>{{ diagnostico.servidor.usuarioConectado }}</td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% elif diagnostico is none %}
+        <div class="mt-4">
+            <small class="text-muted">No se pudo obtener informacion de conexion de la API.</small>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

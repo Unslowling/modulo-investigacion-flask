@@ -1,0 +1,36 @@
+{#
+    nav_menu.html - Menu de navegacion lateral.
+
+    Se incluye dentro del sidebar en base.html con {% include %}.
+    Muestra los links a Home y Login.
+    El link activo se resalta comparando la ruta actual (request.path).
+#}
+
+{# ───────── BARRA SUPERIOR DEL SIDEBAR ───────── #}
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">CRUD Flask</a>
+    </div>
+</div>
+
+{# ───────── TOGGLE PARA MOVIL ───────── #}
+<input type="checkbox" title="Menu de navegacion" class="navbar-toggler" id="navToggle" />
+
+{# ───────── LINKS DE NAVEGACION ───────── #}
+<div class="nav-scrollable">
+    <nav class="nav flex-column">
+
+        <div class="nav-item px-3">
+            <a class="nav-link {{ 'active' if request.path == '/' }}" href="/">
+                <span class="bi bi-house-door-fill-nav-menu"></span> Home
+            </a>
+        </div>
+
+        <div class="nav-item px-3">
+            <a class="nav-link {{ 'active' if request.path == '/login' }}" href="/login">
+                <span class="bi bi-box-arrow-in-right-nav-menu"></span> Login
+            </a>
+        </div>
+
+    </nav>
+</div>
