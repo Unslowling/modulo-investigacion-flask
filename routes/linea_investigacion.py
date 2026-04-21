@@ -32,8 +32,8 @@ def crear():
             
     return render_template('pages/linea_investigacion/crear.html')
 
-@bp.route('/linea-investigacion/editar/<id>', methods=['GET', 'POST'])
-def editar(id):
+@bp.route('/linea-investigacion/editar/<registro_id>', methods=['GET', 'POST'])
+def editar(registro_id):
     """Muestra el formulario precargado y actualiza una línea de investigación."""
     if request.method == 'POST':
         datos = {
@@ -41,7 +41,7 @@ def editar(id):
             'descripcion': request.form.get('descripcion', '')
         }
         
-        exito, mensaje = api.actualizar(TABLA, CLAVE, id, datos)
+        exito, mensaje = api.actualizar(TABLA, CLAVE, registro_id, datos)
         if exito:
             flash("Registro actualizado correctamente", "success")
             return redirect(url_for('linea_investigacion.index'))
@@ -51,7 +51,7 @@ def editar(id):
     # GET: Buscar los datos actuales del registro
     registros = api.listar(TABLA)
     # Extraer el registro que coincide con el ID
-    registro = next((r for r in registros if str(r.get(CLAVE)) == str(id)), None)
+    registro = next((r for r in registros if str(r.get(CLAVE)) == str(registro_id)), None)
     
     if not registro:
         flash("Línea de investigación no encontrada", "danger")

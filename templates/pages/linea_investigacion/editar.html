@@ -15,7 +15,7 @@
     <div class="card shadow-sm border-0 rounded-4 mx-auto" style="max-width: 700px;">
         
         <div class="card-body p-4 p-md-5">
-            <form method="POST" action="{{ url_for('linea_investigacion.editar', id=registro.id) }}"
+            <form method="POST" action="{{ url_for('linea_investigacion.editar', registro_id=registro.id) }}"
                   onsubmit="return confirm('¿Está seguro de actualizar la Línea de Investigación?');">
                 
                 <div class="mb-4">
