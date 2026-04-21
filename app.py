@@ -26,11 +26,12 @@ app.secret_key = SECRET_KEY
 from routes.home import bp as home_bp
 from routes.autenticacion import bp as autenticacion_bp
 from routes.linea_investigacion import bp as linea_investigacion_bp
+from routes.area_conocimiento import bp as area_conocimiento_bp
 
 app.register_blueprint(home_bp)
 app.register_blueprint(autenticacion_bp)
 app.register_blueprint(linea_investigacion_bp)
-
+app.register_blueprint(area_conocimiento_bp)
 
 # ══════════════════════════════════════════════
 # SEGURIDAD GLOBAL DE SESIONES

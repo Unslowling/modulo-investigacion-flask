@@ -31,7 +31,7 @@
             <small class="text-success fw-bold text-uppercase" style="letter-spacing: 0.05em; margin-left: 0.5rem;">SIN FORÁNEAS</small>
         </div>
         <div class="nav-item px-3">
-            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'area-conocimiento' in request.path }}" href="#">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'area_conocimiento' in request.path else '' }}" href="/area_conocimiento">
                 Área Conocimiento
             </a>
         </div>

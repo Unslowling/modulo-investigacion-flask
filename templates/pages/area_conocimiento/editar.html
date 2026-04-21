@@ -1,0 +1,56 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Editar Área de Conocimiento{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4 px-4 pb-4">
+
+    <div class="row">
+        <div class="col-12">
+            <h2 class="fw-bold mb-1">Editar Área de Conocimiento</h2>
+            <p class="text-muted mb-4">Modifica los datos del registro</p>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0 rounded-4 mx-auto" style="max-width: 700px;">
+        
+        <div class="card-body p-4 p-md-5">
+            <form method="POST" action="{{ url_for('area_conocimiento.editar', registro_id=registro.id) }}"
+                  onsubmit="return confirm('¿Está seguro de actualizar el Área de Conocimiento?');">
+                
+                <div class="mb-4">
+                    <label for="gran_area" class="form-label fw-bold">Gran Área</label>
+                    <input type="text" class="form-control" style="border-radius: 8px; padding: 10px;"
+                           id="gran_area" name="gran_area" required maxlength="60"
+                           value="{{ registro.gran_area }}">
+                </div>
+                
+                <div class="mb-4">
+                    <label for="area" class="form-label fw-bold">Área</label>
+                    <input type="text" class="form-control" style="border-radius: 8px; padding: 10px;"
+                           id="area" name="area" required maxlength="60"
+                           value="{{ registro.area }}">
+                </div>
+                
+                <div class="mb-5">
+                    <label for="disciplina" class="form-label fw-bold">Disciplina</label>
+                    <input type="text" class="form-control" style="border-radius: 8px; padding: 10px;"
+                           id="disciplina" name="disciplina" required maxlength="60"
+                           value="{{ registro.disciplina }}">
+                </div>
+                
+                <div class="d-flex justify-content-end mt-2">
+                    <a href="{{ url_for('area_conocimiento.index') }}" class="btn btn-secondary me-3 text-white rounded-pill px-4 py-2 fw-medium">
+                        Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-success rounded-pill px-4 py-2 fw-medium">
+                        Actualizar Registro
+                    </button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
