@@ -1,36 +1,119 @@
 {#
-    nav_menu.html - Menu de navegacion lateral.
-
-    Se incluye dentro del sidebar en base.html con {% include %}.
-    Muestra los links a Home y Login.
-    El link activo se resalta comparando la ruta actual (request.path).
+    nav_menu.html - Menu de navegacion lateral rediseñado.
+    Con los modulos "SIN FORÁNEAS", "CON FORÁNEA (INT)" y "CON FORÁNEA (EXT)".
 #}
 
-{# ───────── BARRA SUPERIOR DEL SIDEBAR ───────── #}
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">CRUD Flask</a>
     </div>
 </div>
 
-{# ───────── TOGGLE PARA MOVIL ───────── #}
 <input type="checkbox" title="Menu de navegacion" class="navbar-toggler" id="navToggle" />
 
-{# ───────── LINKS DE NAVEGACION ───────── #}
 <div class="nav-scrollable">
-    <nav class="nav flex-column">
+    <nav class="nav flex-column pb-4">
 
         <div class="nav-item px-3">
-            <a class="nav-link {{ 'active' if request.path == '/' }}" href="/">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if request.path == '/' }}" href="/">
                 <span class="bi bi-house-door-fill-nav-menu"></span> Home
             </a>
         </div>
 
-        <div class="nav-item px-3">
-            <a class="nav-link {{ 'active' if request.path == '/login' }}" href="/login">
+        <div class="nav-item px-3 mb-2">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if request.path == '/login' }}" href="/login">
                 <span class="bi bi-box-arrow-in-right-nav-menu"></span> Login
+            </a>
+        </div>
+
+        {# ───────── GRUPO SIN FORÁNEAS ───────── #}
+        <div class="nav-item px-3 mt-3 mb-1">
+            <small class="text-success fw-bold text-uppercase" style="letter-spacing: 0.05em; margin-left: 0.5rem;">SIN FORÁNEAS</small>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'area_conocimiento' in request.path else '' }}" href="/area_conocimiento">
+                Área Conocimiento
+            </a>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'objetivo_desarrollo_sostenible' in request.path else '' }}" href="/objetivo_desarrollo_sostenible">
+                ODS
+            </a>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'area_aplicacion' in request.path else '' }}" href="/area_aplicacion">
+                Área Aplicación
+            </a>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if request.path.startswith('/linea-investigacion') }}" href="/linea-investigacion">
+                Línea Investigación
+            </a>
+        </div>
+
+        {# ───────── GRUPO CON FORÁNEA (INT) ───────── #}
+        <div class="nav-item px-3 mt-4 mb-1">
+            <small class="text-success fw-bold text-uppercase" style="letter-spacing: 0.05em; margin-left: 0.5rem;">CON FORÁNEA (INT)</small>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'ac_linea' in request.path }}" href="/ac_linea">
+                AC - Línea
+            </a>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'aa_linea' in request.path }}" href="/aa_linea">
+                AA - Línea
+            </a>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'ods_linea' in request.path }}" href="/ods_linea">
+                ODS - Línea
+            </a>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'semillero' in request.path and not 'participa-semillero' in request.path and not 'semillero-linea' in request.path }}" href="#">
+                Semillero
+            </a>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'semillero-linea' in request.path }}" href="#">
+                Semillero - Línea
+            </a>
+        </div>
+
+        {# ───────── GRUPO CON FORÁNEA (EXT) ───────── #}
+        <div class="nav-item px-3 mt-4 mb-1">
+            <small class="text-success fw-bold text-uppercase" style="letter-spacing: 0.05em; margin-left: 0.5rem;">CON FORÁNEA (EXT)</small>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'grupo-investigacion' in request.path }}" href="#">
+                Grupo Investigación
+            </a>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'grupo-linea' in request.path }}" href="#">
+                Grupo - Línea
+            </a>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'participa-semillero' in request.path }}" href="#">
+                Participa Semillero
+            </a>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'practica-grupo' in request.path }}" href="#">
+                Práctica Grupo
             </a>
         </div>
 
     </nav>
 </div>
+
+<style>
+    .background-active {
+        background: rgba(255,255,255,0.15) !important;
+    }
+    .nav-link:hover {
+        background: rgba(255,255,255,0.1);
+    }
+</style>
