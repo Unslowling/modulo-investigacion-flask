@@ -20,7 +20,7 @@ app.secret_key = SECRET_KEY
 
 
 # ══════════════════════════════════════════════
-# REGISTRAR BLUEPRINTS BASE
+# REGISTRO DE BLUEPRINTS BASE
 # ══════════════════════════════════════════════
 
 from routes.home import bp as home_bp
