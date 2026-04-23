@@ -1,0 +1,48 @@
+{% extends 'layout/base.html' %}
+{% block title %}Participa Grupo{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2>Participaciones</h2>
+
+    <a href="{{ url_for('participa_grupo.crear') }}" class="btn btn-primary mb-3">
+        Nuevo
+    </a>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Cédula</th>
+                <th>Grupo</th>
+                <th>Rol</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for r in registros %}
+            <tr>
+                <td>{{ r.docente_cedula }}</td>
+                <td>{{ r.grupo_investigacion_id }}</td>
+                <td>{{ r.rol }}</td>
+                <td>{{ r.fecha_inicio }}</td>
+                <td>{{ r.fecha_fin }}</td>
+
+                <td>
+                    <a href="{{ url_for('participa_grupo.editar', registro_id=r.docente_cedula) }}" class="btn btn-warning btn-sm">Editar</a>
+
+                    <form method="POST" action="{{ url_for('participa_grupo.eliminar') }}" style="display:inline;">
+                        <input type="hidden" name="docente_cedula" value="{{ r.docente_cedula }}">
+                        <button class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

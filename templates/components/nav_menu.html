@@ -105,8 +105,10 @@
             </a>
         </div>
         <div class="nav-item px-3">
-            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'practica-grupo' in request.path }}" href="#">
-                Práctica Grupo
+            <a class="nav-link text-white rounded-3 px-3 py-2 
+            {{ 'background-active' if 'participa-grupo' in request.path }}"
+            href="{{ url_for('participa_grupo.index') }}">
+                Participa Grupo
             </a>
         </div>
 
