@@ -34,6 +34,7 @@ from routes.aa_linea import bp as aa_linea_bp
 from routes.ods_linea import bp as ods_linea_bp
 from routes.grupo_investigacion import bp as grupo_investigacion_bp
 from routes.semillero import bp as semillero_bp
+from routes.semillero_linea import bp as semillero_linea_bp
 
 app.register_blueprint(home_bp)
 app.register_blueprint(autenticacion_bp)
@@ -46,6 +47,7 @@ app.register_blueprint(aa_linea_bp)
 app.register_blueprint(ods_linea_bp)
 app.register_blueprint(grupo_investigacion_bp)
 app.register_blueprint(semillero_bp)
+app.register_blueprint(semillero_linea_bp)
 
 # ══════════════════════════════════════════════
 # SEGURIDAD GLOBAL DE SESIONES
