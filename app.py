@@ -32,6 +32,7 @@ from routes.objetivo_desarrollo_sostenible import bp as ods_bp
 from routes.ac_linea import bp as ac_linea_bp
 from routes.aa_linea import bp as aa_linea_bp
 from routes.ods_linea import bp as ods_linea_bp
+from routes.grupo_investigacion import bp as grupo_investigacion_bp
 
 app.register_blueprint(home_bp)
 app.register_blueprint(autenticacion_bp)
@@ -42,6 +43,7 @@ app.register_blueprint(ods_bp)
 app.register_blueprint(ac_linea_bp)
 app.register_blueprint(aa_linea_bp)
 app.register_blueprint(ods_linea_bp)
+app.register_blueprint(grupo_investigacion_bp)
 
 # ══════════════════════════════════════════════
 # SEGURIDAD GLOBAL DE SESIONES

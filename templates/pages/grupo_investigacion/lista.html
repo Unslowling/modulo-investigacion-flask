@@ -1,0 +1,58 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Grupos de Investigación{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4 px-4 pb-4">
+
+    <h2 class="fw-bold mb-1">Grupos de Investigación</h2>
+
+    <div class="card shadow-sm border-0 rounded-4">
+        <div class="card-body p-4">
+
+            <div class="d-flex justify-content-between mb-3">
+                <h5>Listado</h5>
+                <a href="{{ url_for('grupo_investigacion.crear') }}" class="btn btn-primary">+ Nuevo</a>
+            </div>
+
+            {% if registros %}
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Convocatoria</th>
+                        <th>Interno</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reg in registros %}
+                    <tr>
+                        <td>{{ reg.id }}</td>
+                        <td>{{ reg.nombre }}</td>
+                        <td>{{ reg.categoria }}</td>
+                        <td>{{ reg.convocatoria }}</td>
+                        <td>{{ reg.interno }}</td>
+                        <td>
+                            <a href="{{ url_for('grupo_investigacion.editar', registro_id=reg.id) }}" class="btn btn-warning btn-sm">Editar</a>
+
+                            <form method="POST" action="{{ url_for('grupo_investigacion.eliminar') }}" style="display:inline;">
+                                <input type="hidden" name="id" value="{{ reg.id }}">
+                                <button class="btn btn-danger btn-sm">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="alert alert-warning">No hay registros</div>
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}
