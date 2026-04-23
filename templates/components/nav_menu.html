@@ -71,7 +71,8 @@
             </a>
         </div>
         <div class="nav-item px-3">
-            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'semillero' in request.path and not 'participa-semillero' in request.path and not 'semillero-linea' in request.path }}" href="#">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'semillero' in request.path and not 'participa-semillero' in request.path and not 'semillero-linea' in request.path }}"
+            href="{{ url_for('semillero.index') }}">
                 Semillero
             </a>
         </div>

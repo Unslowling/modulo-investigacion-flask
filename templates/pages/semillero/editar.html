@@ -1,0 +1,46 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Editar Semillero{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4 px-4 pb-4">
+
+    <h2 class="fw-bold mb-1">Editar Semillero</h2>
+
+    <div class="card shadow-sm border-0 rounded-4 mx-auto" style="max-width: 700px;">
+        <div class="card-body p-4 p-md-5">
+
+            <form method="POST" action="{{ url_for('semillero.editar', registro_id=registro.id) }}">
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">ID</label>
+                    <input type="text" class="form-control" value="{{ registro.id }}" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" value="{{ registro.nombre }}">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Fecha Fundación</label>
+                    <input type="date" name="fecha_fundacion" class="form-control" value="{{ registro.fecha_fundacion }}">
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Grupo Investigación (ID)</label>
+                    <input type="number" name="grupo_investigacion" class="form-control" value="{{ registro.grupo_investigacion }}">
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <a href="{{ url_for('semillero.index') }}" class="btn btn-secondary me-3">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}
