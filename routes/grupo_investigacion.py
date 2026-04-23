@@ -13,7 +13,6 @@ def index():
     registros = api.listar(TABLA)
     return render_template('pages/grupo_investigacion/lista.html', registros=registros)
 
-
 @bp.route('/grupo-investigacion/crear', methods=['GET', 'POST'])
 def crear():
     if request.method == 'POST':
@@ -23,8 +22,8 @@ def crear():
             'categoria': request.form.get('categoria'),
             'convocatoria': request.form.get('convocatoria'),
             'fecha_fundacion': request.form.get('fecha_fundacion'),
-            'universidad_id': request.form.get('universidad_id'),
-            'interno': request.form.get('interno'),
+            'universidad': request.form.get('universidad'),
+            'interno': str(request.form.get('interno')).lower() in ['1', 'true', 'on'],
             'ambito': request.form.get('ambito'),
         }
 

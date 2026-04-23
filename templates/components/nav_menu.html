@@ -86,7 +86,8 @@
             <small class="text-success fw-bold text-uppercase" style="letter-spacing: 0.05em; margin-left: 0.5rem;">CON FORÁNEA (EXT)</small>
         </div>
         <div class="nav-item px-3">
-            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'grupo-investigacion' in request.path }}" href="#">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if request.path.startswith('/grupo-investigacion') }}" 
+            href="{{ url_for('grupo_investigacion.index') }}">
                 Grupo Investigación
             </a>
         </div>
