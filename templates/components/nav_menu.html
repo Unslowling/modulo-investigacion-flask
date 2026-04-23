@@ -100,7 +100,9 @@
             </a>
         </div>
         <div class="nav-item px-3">
-            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'participa-semillero' in request.path }}" href="#">
+            <a class="nav-link text-white rounded-3 px-3 py-2 
+            {{ 'background-active' if 'participa-semillero' in request.path }}"
+            href="{{ url_for('participa_semillero.index') }}">
                 Participa Semillero
             </a>
         </div>

@@ -1,0 +1,35 @@
+{% extends 'layout/base.html' %}
+{% block title %}Nuevo Participante Semillero{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2>Nuevo Registro</h2>
+
+    <form method="POST">
+
+        <div class="mb-3">
+            <label>Semillero</label>
+            <input type="number" name="semillero" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Rol</label>
+            <input type="text" name="rol" class="form-control" maxlength="15" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Fecha Inicio</label>
+            <input type="date" name="fecha_inicio" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Fecha Fin</label>
+            <input type="date" name="fecha_fin" class="form-control">
+        </div>
+
+        <button class="btn btn-primary">Guardar</button>
+    </form>
+
+</div>
+{% endblock %}

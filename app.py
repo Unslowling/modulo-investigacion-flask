@@ -37,6 +37,7 @@ from routes.semillero import bp as semillero_bp
 from routes.semillero_linea import bp as semillero_linea_bp
 from routes.grupo_linea import bp as grupo_linea_bp
 from routes.participa_grupo import bp as participa_grupo_bp
+from routes.participa_semillero import bp as participa_semillero_bp
 
 app.register_blueprint(home_bp)
 app.register_blueprint(autenticacion_bp)
@@ -52,6 +53,7 @@ app.register_blueprint(semillero_bp)
 app.register_blueprint(semillero_linea_bp)
 app.register_blueprint(grupo_linea_bp)
 app.register_blueprint(participa_grupo_bp)
+app.register_blueprint(participa_semillero_bp)
 
 # ══════════════════════════════════════════════
 # SEGURIDAD GLOBAL DE SESIONES
