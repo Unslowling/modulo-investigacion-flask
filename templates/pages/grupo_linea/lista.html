@@ -1,0 +1,40 @@
+{% extends 'layout/base.html' %}
+{% block title %}Grupo - Línea{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2>Relaciones Grupo - Línea</h2>
+
+    <a href="{{ url_for('grupo_linea.crear') }}" class="btn btn-success mb-3">
+        Nueva Relación
+    </a>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Grupo</th>
+                <th>Línea</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reg in registros %}
+            <tr>
+                <td>{{ reg.grupo_investigacion }}</td>
+                <td>{{ reg.linea_investigacion }}</td>
+                <td>
+                    <a href="{{ url_for('grupo_linea.editar', grupo=reg.grupo_investigacion) }}" class="btn btn-warning btn-sm">Editar</a>
+
+                    <form method="POST" action="{{ url_for('grupo_linea.eliminar') }}" style="display:inline;">
+                        <input type="hidden" name="grupo_investigacion" value="{{ reg.grupo_investigacion }}">
+                        <button class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}
