@@ -1,0 +1,26 @@
+{% extends 'layout/base.html' %}
+{% block title %}Editar Relación{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2>Editar Relación</h2>
+
+    <form method="POST">
+
+        <div class="mb-3">
+            <label>Grupo Investigación</label>
+            <input type="text" class="form-control" value="{{ registro.grupo_investigacion }}" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label>Línea Investigación</label>
+            <input type="number" name="linea_investigacion" value="{{ registro.linea_investigacion }}" class="form-control">
+        </div>
+
+        <button class="btn btn-primary">Actualizar</button>
+
+    </form>
+
+</div>
+{% endblock %}

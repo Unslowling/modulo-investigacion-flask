@@ -1,0 +1,74 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Editar Grupo{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4 px-4 pb-4">
+
+    <h2 class="fw-bold mb-1">Editar Grupo de Investigación</h2>
+
+    <div class="card shadow-sm border-0 rounded-4 mx-auto" style="max-width: 800px;">
+        <div class="card-body p-4 p-md-5">
+
+            <form method="POST" action="{{ url_for('grupo_investigacion.editar', registro_id=registro.id) }}">
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">ID</label>
+                    <input type="text" class="form-control" value="{{ registro.id }}" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" value="{{ registro.nombre }}">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">URL GrupLAC</label>
+                    <input type="text" name="url_gruplac" class="form-control" value="{{ registro.url_gruplac }}">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Categoría</label>
+                    <input type="text" name="categoria" class="form-control" value="{{ registro.categoria }}">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Convocatoria</label>
+                    <input type="text" name="convocatoria" class="form-control" value="{{ registro.convocatoria }}">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Fecha Fundación</label>
+                    <input type="date" name="fecha_fundacion" class="form-control" value="{{ registro.fecha_fundacion }}">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Universidad ID</label>
+                    <input type="number" name="universidad_id" class="form-control" value="{{ registro.universidad_id }}">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Interno</label>
+                    <select name="interno" class="form-control">
+                        <option value="1" {% if registro.interno == 1 %}selected{% endif %}>Sí</option>
+                        <option value="0" {% if registro.interno == 0 %}selected{% endif %}>No</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Ámbito</label>
+                    <input type="text" name="ambito" class="form-control" value="{{ registro.ambito }}">
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <a href="{{ url_for('grupo_investigacion.index') }}" class="btn btn-secondary me-3">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

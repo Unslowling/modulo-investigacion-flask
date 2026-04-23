@@ -1,0 +1,24 @@
+{% extends 'layout/base.html' %}
+{% block title %}Nuevo Semillero - Línea{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2>Nueva Relación</h2>
+
+    <form method="POST">
+        <div class="mb-3">
+            <label>Semillero ID</label>
+            <input type="number" name="semillero" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Línea Investigación ID</label>
+            <input type="number" name="linea_investigacion" class="form-control" required>
+        </div>
+
+        <button class="btn btn-primary">Guardar</button>
+    </form>
+
+</div>
+{% endblock %}

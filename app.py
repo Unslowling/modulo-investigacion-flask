@@ -20,7 +20,7 @@ app.secret_key = SECRET_KEY
 
 
 # ══════════════════════════════════════════════
-# REGISTRAR BLUEPRINTS BASE
+# REGISTRO DE BLUEPRINTS BASE
 # ══════════════════════════════════════════════
 
 from routes.home import bp as home_bp
@@ -32,6 +32,12 @@ from routes.objetivo_desarrollo_sostenible import bp as ods_bp
 from routes.ac_linea import bp as ac_linea_bp
 from routes.aa_linea import bp as aa_linea_bp
 from routes.ods_linea import bp as ods_linea_bp
+from routes.grupo_investigacion import bp as grupo_investigacion_bp
+from routes.semillero import bp as semillero_bp
+from routes.semillero_linea import bp as semillero_linea_bp
+from routes.grupo_linea import bp as grupo_linea_bp
+from routes.participa_grupo import bp as participa_grupo_bp
+from routes.participa_semillero import bp as participa_semillero_bp
 
 app.register_blueprint(home_bp)
 app.register_blueprint(autenticacion_bp)
@@ -42,6 +48,12 @@ app.register_blueprint(ods_bp)
 app.register_blueprint(ac_linea_bp)
 app.register_blueprint(aa_linea_bp)
 app.register_blueprint(ods_linea_bp)
+app.register_blueprint(grupo_investigacion_bp)
+app.register_blueprint(semillero_bp)
+app.register_blueprint(semillero_linea_bp)
+app.register_blueprint(grupo_linea_bp)
+app.register_blueprint(participa_grupo_bp)
+app.register_blueprint(participa_semillero_bp)
 
 # ══════════════════════════════════════════════
 # SEGURIDAD GLOBAL DE SESIONES

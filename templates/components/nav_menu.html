@@ -71,12 +71,14 @@
             </a>
         </div>
         <div class="nav-item px-3">
-            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'semillero' in request.path and not 'participa-semillero' in request.path and not 'semillero-linea' in request.path }}" href="#">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'semillero' in request.path and not 'participa-semillero' in request.path and not 'semillero-linea' in request.path }}"
+            href="{{ url_for('semillero.index') }}">
                 Semillero
             </a>
         </div>
         <div class="nav-item px-3">
-            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'semillero-linea' in request.path }}" href="#">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'semillero-linea' in request.path }}"
+            href="{{ url_for('semillero_linea.index') }}">
                 Semillero - Línea
             </a>
         </div>
@@ -86,23 +88,29 @@
             <small class="text-success fw-bold text-uppercase" style="letter-spacing: 0.05em; margin-left: 0.5rem;">CON FORÁNEA (EXT)</small>
         </div>
         <div class="nav-item px-3">
-            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'grupo-investigacion' in request.path }}" href="#">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if request.path.startswith('/grupo-investigacion') }}" 
+            href="{{ url_for('grupo_investigacion.index') }}">
                 Grupo Investigación
             </a>
         </div>
         <div class="nav-item px-3">
-            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'grupo-linea' in request.path }}" href="#">
+            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'grupo-linea' in request.path }}"
+            href="{{ url_for('grupo_linea.index') }}">
                 Grupo - Línea
             </a>
         </div>
         <div class="nav-item px-3">
-            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'participa-semillero' in request.path }}" href="#">
+            <a class="nav-link text-white rounded-3 px-3 py-2 
+            {{ 'background-active' if 'participa-semillero' in request.path }}"
+            href="{{ url_for('participa_semillero.index') }}">
                 Participa Semillero
             </a>
         </div>
         <div class="nav-item px-3">
-            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if 'practica-grupo' in request.path }}" href="#">
-                Práctica Grupo
+            <a class="nav-link text-white rounded-3 px-3 py-2 
+            {{ 'background-active' if 'participa-grupo' in request.path }}"
+            href="{{ url_for('participa_grupo.index') }}">
+                Participa Grupo
             </a>
         </div>
 

@@ -1,0 +1,35 @@
+{% extends 'layout/base.html' %}
+{% block title %}Editar Participación{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2>Editar Registro</h2>
+
+    <form method="POST">
+
+        <div class="mb-3">
+            <label>Semillero</label>
+            <input type="text" class="form-control" value="{{ registro.semillero }}" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label>Rol</label>
+            <input type="text" name="rol" class="form-control" value="{{ registro.rol }}">
+        </div>
+
+        <div class="mb-3">
+            <label>Fecha Inicio</label>
+            <input type="date" name="fecha_inicio" class="form-control" value="{{ registro.fecha_inicio }}">
+        </div>
+
+        <div class="mb-3">
+            <label>Fecha Fin</label>
+            <input type="date" name="fecha_fin" class="form-control" value="{{ registro.fecha_fin }}">
+        </div>
+
+        <button class="btn btn-success">Actualizar</button>
+    </form>
+
+</div>
+{% endblock %}
