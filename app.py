@@ -62,7 +62,7 @@ app.register_blueprint(participa_semillero_bp)
 @app.before_request
 def proteger_rutas():
     # Rutas que NO requieren autenticacion
-    rutas_publicas = ['autenticacion.login', 'static']
+    rutas_publicas = ['autenticacion.login', 'autenticacion.contrasena', 'static']
     
     # request.endpoint es algo como: 'autenticacion.login' o 'home.index'
     if request.endpoint in rutas_publicas or request.endpoint is None:
