@@ -22,9 +22,9 @@ def login():
             # Enviar credenciales al endpoint de login en C#
             url = f"{API_BASE_URL}/api/autenticacion/token"
             datos = {
-                "tabla": "usuarios",
+                "tabla": "usuario",
                 "campoUsuario": "email",
-                "campoContrasena": "password",
+                "campoContrasena": "contrasena",
                 "usuario": email,
                 "contrasena": contrasena
             }
