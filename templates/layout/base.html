@@ -26,16 +26,20 @@
     <div class="page">
 
         {# ───────── SIDEBAR (menu lateral) ───────── #}
+        {% if session.get('api_token') %}
         <div class="sidebar">
             {% include 'components/nav_menu.html' %}
         </div>
+        {% endif %}
 
         {# ───────── CONTENIDO PRINCIPAL ───────── #}
         <main>
             {# Barra superior con el nombre del frontend #}
+            {% if session.get('api_token') %}
             <div class="top-row px-4">
                 <span>Frontend Flask — API GenericaCsharp</span>
             </div>
+            {% endif %}
 
             {# Area donde se inserta el contenido de cada pagina #}
             <article class="content px-4">
