@@ -3,7 +3,7 @@ autenticacion.py - Blueprint para manejar el inicio de sesión con JWT.
 """
 import requests
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
-from config import API_BASE_URL
+from config import API_BASE_URL, VERIFY_SSL
 
 bp = Blueprint('autenticacion', __name__)
 
@@ -20,11 +20,17 @@ def login():
 
         try:
             # Enviar credenciales al endpoint de login en C#
-            url = f"{API_BASE_URL}/api/autenticacion/login"
-            datos = {"email": email, "contrasena": contrasena}
+            url = f"{API_BASE_URL}/api/autenticacion/token"
+            datos = {
+                "tabla": "usuarios",
+                "campoUsuario": "email",
+                "campoContrasena": "password",
+                "usuario": email,
+                "contrasena": contrasena
+            }
             
             # Petición HTTP directa usando requests
-            respuesta = requests.post(url, json=datos)
+            respuesta = requests.post(url, json=datos, verify=VERIFY_SSL)
             
             if respuesta.ok:
                 contenido = respuesta.json()
@@ -54,7 +60,7 @@ def login():
 @bp.route('/logout')
 def logout():
     """Cierra la sesión destruyendo el token JWT almacenado localmente."""
-    session.pop('api_token', None)
+    session.clear()
     flash("Has cerrado sesión correctamente.", "success")
     return redirect(url_for('autenticacion.login'))
 

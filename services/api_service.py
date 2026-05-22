@@ -10,7 +10,7 @@ Cada metodo retorna los datos o una tupla (exito, mensaje).
 import requests
 
 # API_BASE_URL: URL base de la API, importada desde config.py (ej: "http://localhost:5034")
-from config import API_BASE_URL
+from config import API_BASE_URL, VERIFY_SSL
 
 
 # Clase que encapsula las 4 operaciones CRUD contra la API REST.
@@ -26,10 +26,10 @@ class ApiService:
         eliminar(tabla, clave, valor)   → (bool, str)
     """
 
-    # Constructor: se ejecuta al crear una instancia con ApiService()
     def __init__(self):
         # Guarda la URL base como atributo de la instancia para usarla en todos los metodos
         self.base_url = API_BASE_URL
+        self.verify = VERIFY_SSL
 
     def _get_headers(self):
         from flask import session
@@ -67,7 +67,7 @@ class ApiService:
 
             # requests.get() hace una peticion HTTP GET a la URL indicada
             # params se agrega automaticamente como query string (ej: ?limite=5)
-            respuesta = requests.get(url, params=params, headers=self._get_headers())
+            respuesta = requests.get(url, params=params, headers=self._get_headers(), verify=self.verify)
 
             # .json() convierte el cuerpo de la respuesta de texto JSON a diccionario Python
             datos_json = respuesta.json()
@@ -109,7 +109,7 @@ class ApiService:
 
             print(f">>> API POST URL: {url}")
             print(f">>> API POST DATA: {datos}")
-            respuesta = requests.post(url, json=datos, params=params, headers=self._get_headers())
+            respuesta = requests.post(url, json=datos, params=params, headers=self._get_headers(), verify=self.verify)
             
             print(f">>> API RESPONSE STATUS: {respuesta.status_code}")
             print(f">>> API RESPONSE TEXT: {respuesta.text}")
@@ -154,7 +154,7 @@ class ApiService:
 
             # requests.put() hace una peticion HTTP PUT para modificar un recurso existente.
             # json=datos: envia solo los campos que cambiaron (sin la clave primaria).
-            respuesta = requests.put(url, json=datos, params=params, headers=self._get_headers())
+            respuesta = requests.put(url, json=datos, params=params, headers=self._get_headers(), verify=self.verify)
 
             # Convertir la respuesta JSON a diccionario Python
             contenido = respuesta.json()
@@ -192,7 +192,7 @@ class ApiService:
 
             # requests.delete() hace una peticion HTTP DELETE para borrar el recurso.
             # No necesita cuerpo JSON porque la clave ya va en la URL.
-            respuesta = requests.delete(url, headers=self._get_headers())
+            respuesta = requests.delete(url, headers=self._get_headers(), verify=self.verify)
 
             # Convertir la respuesta JSON a diccionario Python
             contenido = respuesta.json()
@@ -230,7 +230,7 @@ class ApiService:
             if parametros:
                 payload.update(parametros)
 
-            respuesta = requests.post(url, json=payload, headers=self._get_headers())
+            respuesta = requests.post(url, json=payload, headers=self._get_headers(), verify=self.verify)
             contenido = respuesta.json()
 
             if not respuesta.ok:

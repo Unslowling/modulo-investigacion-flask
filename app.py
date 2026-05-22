@@ -5,7 +5,7 @@ Crea la aplicacion, registra los Blueprints base
 e inicia el servidor de desarrollo en el puerto 5100.
 """
 
-from flask import Flask
+from flask import Flask, request, session, redirect, url_for, flash
 
 from config import SECRET_KEY
 
@@ -61,6 +61,18 @@ app.register_blueprint(participa_semillero_bp)
 
 @app.before_request
 def proteger_rutas():
+    # Rutas que NO requieren autenticacion
+    rutas_publicas = ['autenticacion.login', 'static']
+    
+    # request.endpoint es algo como: 'autenticacion.login' o 'home.index'
+    if request.endpoint in rutas_publicas or request.endpoint is None:
+        return None
+    
+    # Verificar si el usuario tiene sesion con token JWT
+    if 'api_token' not in session:
+        flash('Debes iniciar sesion para acceder.', 'warning')
+        return redirect(url_for('autenticacion.login'))
+    
     return None
 
 
