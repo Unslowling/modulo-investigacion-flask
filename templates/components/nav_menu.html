@@ -20,11 +20,24 @@
             </a>
         </div>
 
-        <div class="nav-item px-3 mb-2">
-            <a class="nav-link text-white rounded-3 px-3 py-2 {{ 'background-active' if request.path == '/login' }}" href="/login">
-                <span class="bi bi-box-arrow-in-right-nav-menu"></span> Login
-            </a>
-        </div>
+        <!-- {% if session.get('api_token') %} -->
+            <div class="nav-item px-3 mb-2">
+                <a class="nav-link text-warning rounded-3 px-3 py-2"
+                href="{{ url_for('autenticacion.logout') }}">
+                    <span class="bi bi-box-arrow-left"></span> Cerrar Sesión
+                </a>
+            </div>
+
+        <!-- {% else %} -->
+
+            <div class="nav-item px-3 mb-2">
+                <a class="nav-link text-white rounded-3 px-3 py-2 
+                {{ 'background-active' if request.path == '/login' }}"
+                href="{{ url_for('autenticacion.login') }}">
+                    <span class="bi bi-box-arrow-in-right"></span> Login
+                </a>
+            </div>
+        <!-- {% endif %} -->
 
         {# ───────── GRUPO SIN FORÁNEAS ───────── #}
         <div class="nav-item px-3 mt-3 mb-1">
