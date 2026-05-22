@@ -12,7 +12,7 @@ def login():
     """Muestra el formulario de login y procesa la autenticación contra la API C#."""
     # Si el usuario ya tiene sesión, redirigir al home
     if 'api_token' in session:
-        return redirect(url_for('home.index'))
+        return redirect(url_for('home.home'))
 
     if request.method == 'POST':
         email = request.form.get('email', '')
@@ -41,7 +41,7 @@ def login():
                     # Guardar el token de seguridad en la sesión local de Flask
                     session['api_token'] = token
                     flash("Has iniciado sesión exitosamente.", "success")
-                    return redirect(url_for('home.index'))
+                    return redirect(url_for('home.home'))
                 else:
                     flash("Error: El servidor no proporcionó un token válido.", "danger")
             else:
@@ -64,3 +64,6 @@ def logout():
     flash("Has cerrado sesión correctamente.", "success")
     return redirect(url_for('autenticacion.login'))
 
+@bp.route('/contrasena')
+def contrasena():
+    return render_template('pages/contrasena.html')
