@@ -173,6 +173,19 @@
             <div class="card-body login-body">
                 <p class="text-muted text-center mb-4">Ingresa tus credenciales para acceder al sistema.</p>
                 
+                {# Mostrar mensajes flash de error en el login #}
+                {% with mensajes = get_flashed_messages(with_categories=true) %}
+                    {% if mensajes %}
+                        {% for categoria, mensaje in mensajes %}
+                            <div class="alert alert-{{ categoria }} alert-dismissible fade show mb-3">
+                                {{ mensaje }}
+                                <button type="button" class="btn-close"
+                                        onclick="this.parentElement.remove()"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                
                 <form method="POST" action="{{ url_for('autenticacion.login') }}">
                     <div class="mb-3">
                         <label for="email" class="form-label fw-bold">Correo Electrónico</label>
