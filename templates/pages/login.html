@@ -3,34 +3,189 @@
 {% block title %}Iniciar Sesión{% endblock %}
 
 {% block content %}
-<div class="login-fullscreen-wrapper">
-    <!-- Orbes decorativas de fondo (luces difusas de profundidad) -->
-    <div class="bg-orb orb-1"></div>
-    <div class="bg-orb orb-2"></div>
+<style>
 
-    <div class="login-container">
-        <!-- Columna Izquierda: Bienvenida -->
-        <div class="login-welcome-col">
-            <div class="welcome-content">
-                <div class="tech-badge">
-                    <span class="badge-icon"></span>
-                    <span class="badge-text">Plataforma Segura</span>
-                </div>
+    /* IMPORTAR FUENTE */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
 
-                <h1 class="welcome-title">¡Bienvenido de nuevo!</h1>
-                <p class="welcome-subtitle">Accede a la plataforma de gestión e investigación institucional.</p>
+    body {
+        background:
+            radial-gradient(circle at top left, rgba(168, 85, 247, 0.25), transparent 30%),
+            radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.25), transparent 30%),
+            linear-gradient(135deg, #020617, #0f172a, #111827);
 
-                <div class="welcome-divider"></div>
+        min-height: 100vh;
+        font-family: 'Orbitron', sans-serif;
+    }
 
-                <p class="welcome-text">
-                    Gestiona áreas de conocimiento, líneas de investigación, semilleros y relaciones académicas desde
-                    una plataforma ágil y segura.
-                </p>
+    .login-card {
+        background: rgba(2, 6, 23, 0.78);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 24px;
+        overflow: hidden;
+        backdrop-filter: blur(14px);
 
-                <div class="welcome-footer-info">
-                    <div class="info-item">
-                        <span class="info-icon">⚡</span>
-                        <span>JWT Seguro</span>
+        box-shadow:
+            0 0 20px rgba(168,85,247,0.18),
+            0 0 40px rgba(59,130,246,0.12);
+
+        transition: 0.3s ease;
+    }
+
+    .login-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .login-header {
+        background: linear-gradient(
+            90deg,
+            #ec4899,
+            #8b5cf6,
+            #3b82f6
+        );
+
+        padding: 1.4rem;
+        text-align: center;
+    }
+
+    .login-header h4 {
+        margin: 0;
+        color: white;
+        font-weight: 700;
+        letter-spacing: 1px;
+        font-size: 1.8rem;
+        text-shadow: 0 0 12px rgba(255,255,255,0.4);
+    }
+
+    .login-body {
+        color: #e2e8f0;
+        padding: 2rem;
+    }
+
+    .login-body p {
+        color: #cbd5e1 !important;
+        font-size: 0.95rem;
+    }
+
+    .form-label {
+        color: #f472b6;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .form-control {
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(255,255,255,0.08);
+        color: white;
+        border-radius: 14px;
+        padding: 0.85rem 1rem;
+
+        transition: 0.25s ease;
+    }
+
+    .form-control:focus {
+
+        background: rgba(15, 23, 42, 1);
+
+        border-color: #8b5cf6;
+
+        box-shadow:
+            0 0 10px rgba(139,92,246,0.4),
+            0 0 20px rgba(59,130,246,0.2);
+
+        color: white;
+    }
+
+    .form-control::placeholder {
+        color: #64748b;
+    }
+
+    .btn-login {
+
+        background: linear-gradient(
+            90deg,
+            #ec4899,
+            #8b5cf6,
+            #3b82f6
+        );
+
+        border: none;
+        border-radius: 14px;
+
+        color: white;
+
+        font-weight: 600;
+        letter-spacing: 1px;
+
+        padding: 0.9rem;
+
+        transition: 0.3s ease;
+
+        box-shadow:
+            0 0 10px rgba(139,92,246,0.3),
+            0 0 20px rgba(59,130,246,0.2);
+    }
+
+    .btn-login:hover {
+
+        transform: translateY(-2px) scale(1.01);
+
+        box-shadow:
+            0 0 20px rgba(236,72,153,0.35),
+            0 0 30px rgba(139,92,246,0.25);
+    }
+
+    .restore-link a {
+
+        color: #c084fc;
+
+        text-decoration: none;
+
+        font-size: 0.9rem;
+
+        transition: 0.25s ease;
+    }
+
+    .restore-link a:hover {
+
+        color: #ffffff;
+
+        text-shadow: 0 0 8px rgba(192,132,252,0.8);
+    }
+
+    .jwt-text {
+
+        color: #94a3b8 !important;
+
+        font-size: 0.8rem;
+
+        opacity: 0.85;
+    }
+</style>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="card login-card">
+            <div class="login-header">
+                <h4>Validación de Seguridad</h4>
+            </div>
+            <div class="card-body login-body">
+                <p class="text-muted text-center mb-4">Ingresa tus credenciales para acceder al sistema.</p>
+                
+                <form method="POST" action="{{ url_for('autenticacion.login') }}">
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-bold">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="email" name="email" required placeholder="tu@email.com" autofocus>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="contrasena" class="form-label fw-bold">Contraseña</label>
+                        <input type="password" class="form-control" id="contrasena" name="contrasena" required placeholder="••••••••">
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">Entrar</button>
                     </div>
                     <div class="info-item">
                         <span class="info-icon">📊</span>
@@ -40,54 +195,9 @@
             </div>
         </div>
     </div>
-
-    <!-- Columna Derecha: Formulario -->
-    <div class="login-form-col">
-        <div class="login-card-glass">
-            <div class="login-card-header">
-                <h2>Iniciar Sesión</h2>
-                <p>Ingrese sus credenciales para continuar</p>
-            </div>
-
-            {# ───────── MENSAJES FLASH PARA LOGIN ───────── #}
-            {% with mensajes = get_flashed_messages(with_categories=true) %}
-            {% if mensajes %}
-            {% for categoria, mensaje in mensajes %}
-            <div class="alert alert-{{ categoria }} alert-dismissible fade show mb-3">
-                {{ mensaje }}
-                <button type="button" class="btn-close" onclick="this.parentElement.remove()"></button>
-            </div>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
-
-            <form method="POST" action="{{ url_for('autenticacion.login') }}">
-                <div class="input-group-custom">
-                    <label for="email" class="input-label">Correo Electrónico</label>
-                    <input type="email" class="input-field" id="email" name="email" required placeholder="tu@email.com"
-                        autofocus autocomplete="email">
-                </div>
-
-                <div class="input-group-custom">
-                    <label for="contrasena" class="input-label">Contraseña</label>
-                    <input type="password" class="input-field" id="contrasena" name="contrasena" required
-                        placeholder="••••••••" autocomplete="current-password">
-                </div>
-
-                <button type="submit" class="btn-login-submit">Entrar</button>
-
-                <div class="text-center mt-3">
-                    <a href="{{ url_for('autenticacion.contrasena') }}" class="forgot-password-link">
-                        Restablecer contraseña
-                    </a>
-                </div>
-            </form>
-
-            <div class="login-card-footer">
-                <span>Sistema de Control y Diagnóstico JWT</span>
-            </div>
+        <div class="text-center mt-3 text-white">
+            <small>Este sistema requiere un JWT Token para interactuar con la Base de Datos.</small>
         </div>
-    </div>
 </div>
 </div>
 {% endblock %}

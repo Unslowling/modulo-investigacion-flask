@@ -5,7 +5,7 @@ Contiene las constantes que se usan en toda la aplicacion:
 la URL de la API y la clave secreta para sesiones/flash.
 """
 
-API_BASE_URL = "http://localhost:7231"
+API_BASE_URL = "http://localhost:5034"
 VERIFY_SSL = False
 SECRET_KEY = "clave-secreta-flask-frontend-2024"
 
