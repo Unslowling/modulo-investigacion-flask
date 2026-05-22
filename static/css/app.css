@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 /* ══════════════════════════════════════════════
    app.css - Estilos personalizados del frontend Flask.
 
@@ -118,6 +120,12 @@ main > .top-row {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M4.5 11.5A.5.5 0 0 1 5 11h10a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 1 3h10a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5z'/%3E%3C/svg%3E");
 }
 
+/* Icono de cerrar sesión (logout) */
+.bi-box-arrow-right-nav-menu {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z'/%3E%3Cpath fill-rule='evenodd' d='M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z'/%3E%3C/svg%3E");
+}
+
+
 
 /* ───────── 5. ITEMS DE NAVEGACION ───────── */
 
@@ -226,3 +234,413 @@ main > .top-row {
         margin-left: 0;
     }
 }
+
+/* ══════════════════════════════════════════════
+   7. PANTALLA DE LOGIN PREMIUM (GLASSMORPHISM)
+   ══════════════════════════════════════════════ */
+
+.login-fullscreen-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1050;
+    overflow-y: auto;
+    background-color: #050b18;
+    background-image: radial-gradient(circle at 10% 20%, rgba(12, 28, 64, 1) 0%, rgba(5, 11, 24, 1) 90%);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Orbes de luz de fondo */
+.bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.orb-1 {
+    top: -10%;
+    left: 10%;
+    width: 45vw;
+    height: 45vw;
+    background: radial-gradient(circle, rgba(27, 60, 115, 0.6) 0%, rgba(7, 23, 57, 0) 70%);
+}
+
+.orb-2 {
+    bottom: -10%;
+    right: 5%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(43, 79, 129, 0.5) 0%, rgba(11, 31, 77, 0) 70%);
+}
+
+/* Contenedor principal de las 2 columnas */
+.login-container {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 700px;
+    display: flex;
+    position: relative;
+    z-index: 1;
+    margin: 2rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Columna Izquierda: Bienvenida */
+.login-welcome-col {
+    flex: 1.3; /* Toma alrededor del 56% del ancho */
+    background: linear-gradient(135deg, rgba(7, 23, 57, 0.95) 0%, rgba(16, 44, 87, 0.9) 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Decoraciones en la columna izquierda */
+.login-welcome-col::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(6, 182, 212, 0.1) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 2;
+}
+
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 2rem;
+    width: fit-content;
+}
+
+.tech-badge .badge-icon {
+    font-size: 1rem;
+}
+
+.tech-badge .badge-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #93c5fd;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.welcome-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.welcome-subtitle {
+    font-size: 1.25rem;
+    color: #93c5fd;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+.welcome-divider {
+    height: 4px;
+    width: 80px;
+    background: linear-gradient(90deg, #3b82f6, #06b6d4);
+    border-radius: 2px;
+    margin-bottom: 2rem;
+}
+
+.welcome-text {
+    font-size: 1.05rem;
+    color: #94a3b8;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    max-width: 540px;
+}
+
+.welcome-footer-info {
+    display: flex;
+    gap: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 2rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    font-weight: 500;
+}
+
+.info-item .info-icon {
+    font-size: 1.25rem;
+}
+
+/* Columna Derecha: Formulario */
+.login-form-col {
+    flex: 1; /* Toma alrededor del 44% del ancho */
+    background: rgba(10, 25, 47, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+}
+
+/* Tarjeta Glassmorphism */
+.login-card-glass {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-card-header {
+    margin-bottom: 2.5rem;
+}
+
+.login-card-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+}
+
+.login-card-header p {
+    font-size: 0.95rem;
+    color: #94a3b8;
+}
+
+/* Input groups personalizados */
+.input-group-custom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+}
+
+.input-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.02em;
+}
+
+.input-field {
+    background-color: rgba(5, 11, 24, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0.85rem 1.25rem;
+    color: #ffffff;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-field:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.input-field:focus {
+    border-color: #3b82f6;
+    background-color: rgba(5, 11, 24, 0.8);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+    outline: none;
+}
+
+.input-field::placeholder {
+    color: #475569;
+}
+
+/* Botón de envío estilizado */
+.btn-login-submit {
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
+}
+
+.btn-login-submit:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+.btn-login-submit:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.login-card-footer {
+    margin-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+.login-card-footer span {
+    font-size: 0.8rem;
+    color: #475569;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Alert Bootstrap overrides inside glass login */
+.login-card-glass .alert {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.25rem;
+}
+
+.login-card-glass .btn-close {
+    filter: invert(1) grayscale(1) brightness(2);
+    padding: 0.9rem 1.25rem;
+}
+
+/* ══════════════════════════════════════════════
+   8. RESPONSIVE LOGIN
+   ══════════════════════════════════════════════ */
+
+@media (max-width: 991px) {
+    .login-container {
+        flex-direction: column;
+        min-height: auto;
+        margin: 1rem;
+        border-radius: 20px;
+    }
+
+    .login-welcome-col {
+        padding: 3.5rem 2rem 2.5rem 2rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        align-items: center;
+        text-align: center;
+    }
+
+    .welcome-title {
+        font-size: 2.25rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .welcome-divider {
+        margin: 0 auto 1.5rem auto;
+    }
+
+    .welcome-text {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+        max-width: 100%;
+    }
+
+    .welcome-footer-info {
+        justify-content: center;
+        width: 100%;
+        gap: 1.5rem;
+    }
+
+    .login-form-col {
+        padding: 3rem 2rem;
+        background: rgba(10, 25, 47, 0.85);
+    }
+
+    .login-card-glass {
+        max-width: 100%;
+    }
+
+    .login-card-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-fullscreen-wrapper {
+        align-items: flex-start;
+    }
+    
+    .login-container {
+        margin: 0;
+        border-radius: 0;
+        border: none;
+    }
+    
+    .login-welcome-col {
+        padding: 3rem 1.5rem 2rem 1.5rem;
+    }
+
+    .welcome-title {
+        font-size: 1.85rem;
+    }
+
+    .login-form-col {
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .welcome-footer-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+}
+
+.forgot-password-link {
+    color: #93c5fd;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.forgot-password-link:hover {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+
+

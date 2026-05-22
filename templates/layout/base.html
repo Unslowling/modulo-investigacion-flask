@@ -48,6 +48,7 @@
                    Flask usa flash() para enviar mensajes entre peticiones.
                    Aqui se muestran como alertas Bootstrap con boton de cerrar.
                    Las categorias 'success' y 'danger' definen el color. #}
+                {% if request.endpoint != 'autenticacion.login' %}
                 {% with mensajes = get_flashed_messages(with_categories=true) %}
                     {% if mensajes %}
                         {% for categoria, mensaje in mensajes %}
@@ -60,6 +61,7 @@
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
+                {% endif %}
 
                 {# ───────── CONTENIDO ESPECIFICO ─────────
                    Cada pagina hija define su contenido aqui #}
